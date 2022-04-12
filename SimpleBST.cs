@@ -51,31 +51,28 @@ namespace Exercize
             }
             return false;
         }
-        public void Remove (int X)
+        public bool Remove (int X)
         {
-            Node? P = null;
             Node? N = Root;
             while(N != null)
             {
                 if(X == N.V)
                 {
-                    Remove(N, P);
-                    return;
+                  return Remove(N);
                 }
                 else if(X > N.V)
                 {
-                    P = N;
                     N = N.R;
                 }
                 else
                 {
-                    P = N;
                     N = N.L;
                 }
             }
+            return false;
         }
 
-        void Remove (Node N, Node? P)
+        bool Remove (Node N)
         {
           int Children = 0;
           if(N.L != null)
@@ -89,49 +86,51 @@ namespace Exercize
           
           if(Children == 0)
           {
-            RemoveLeaf(N, P);
+            return RemoveLeaf(N);
           }
           else if (Children == 1)
           {
-            RemoveNode1(N, P);
+            return RemoveNode1(N);
           }
           else
           {
-            RemoveNode2(N, P);
+            return RemoveNode2(N);
           }
         }
-        void RemoveLeaf(Node N, Node? P)
+        bool RemoveLeaf(Node N)
         {
-          if(P == null)
+          if(N.P == null)
           {
             Root = null;
           }
           else
           {
-            if(N == P.L)
+            if(N == N.P.L)
             {
-              P.L = null;
+              N.P.L = null;
             }
             else
             {
-              P.R = null;
+              N.P.R = null;
             }
           }
+
+          return true;
         }
-        void RemoveNode1(Node N, Node? P)
+        bool RemoveNode1(Node N)
         {
           
           Node? C = (N.L != null)?N.L:N.R;
-          if(P != null)
+          if(N.P != null)
           {
             // N isn't the root
-            if(P.L == N)
+            if(N.P.L == N)
             {
-              P.L = C;
+              N.P.L = C;
             }
             else
             {
-              P.R = C;
+              N.P.R = C;
             }
           }
           else
@@ -139,25 +138,24 @@ namespace Exercize
             // N is the root
             Root = C;
           }
+
+          return true;
         }
-        void RemoveNode2(Node N, Node? P)
+        bool RemoveNode2(Node N)
         {
           Node? M = FindNodeToSwap(N);
           if(M == null)
           {
             Console.WriteLine(@"It's impossible!");
+            return false;
           }
           else
           {
             // Dirty, but works
             int X = N.V;
-            try
-            {
-              N.V = M.V;
-            }
-            finally
-            {}
-            Remove(X);
+            N.V = M.V;
+
+            return Remove(M);
           }
        }
         Node? FindNodeToSwap(Node N)
@@ -215,17 +213,7 @@ namespace Exercize
 
         public bool Check()
         {
-          Console.Write(@"Check() ");
           bool Result = Check(Root);
-
-          if(Result)
-          {
-            Console.WriteLine(@"passed");
-          }
-          else
-          {
-            Console.WriteLine(@"FAILED!");
-          }
           return Result;
         }
     }

@@ -24,6 +24,7 @@ namespace Exercize
     {
         void Insert(int X);
         bool Find(int X);
-        void Remove (int X);
+        bool Remove (int X);
+        bool Check();
     }
 }
