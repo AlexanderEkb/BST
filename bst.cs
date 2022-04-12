@@ -5,12 +5,14 @@ namespace Exercize
         public int V;
         public Node? L;
         public Node? R;
+        public Node? P;
         
         public Node()
         {
             L = null;
             R = null;
-            V = 0;
+            P = null;
+            V = -1;
         }
         // public INode? GetL() {return L;}
         // public void SetL(INode Value) {L = Value;}
