@@ -5,7 +5,12 @@ namespace Exercize
         Node? Root;
         public SimpleBST()
         {
-            Root = null;
+          Clean();
+        }
+
+        public void Clean()
+        {
+          Root = null;
         }
         public void Insert(int X)
         {

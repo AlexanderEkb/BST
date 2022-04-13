@@ -22,6 +22,7 @@ namespace Exercize
 
     interface IBST
     {
+        void Clean();
         void Insert(int X);
         bool Find(int X);
         bool Remove (int X);
