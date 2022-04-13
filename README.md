@@ -23,6 +23,7 @@ values.
 * Removal of 20000 elements
 * done.
 * done.
+
 |           | I   | II    |
 |-----------|-----|-------|
 | Insertion | 77  | 87770 |
