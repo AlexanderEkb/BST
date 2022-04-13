@@ -22,10 +22,10 @@ done.
 Removal of 20000 elements 
 done.
 done.
-          |	I	|	II    
---------------------------------
-Insertion | 77	| 87770
-Search    | 3	| 635
-Removal   | 8	| 425
+|           | I   | II    |
+|-----------|-----|-------|
+| Insertion | 77  | 87770 |
+| Search    | 3	  | 635   |
+| Removal   | 8	  | 425   |
 
 [Done] exited with code=0 in 90.284 seconds
